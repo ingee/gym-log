@@ -16,4 +16,5 @@ vue create gym-log
   # select Lint on save
   # select config in dedicated config files
 vue add vuetify
+  # select Default
 ```
