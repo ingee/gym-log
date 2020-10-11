@@ -2,10 +2,10 @@ Gym-log
 ======
 Daily workout log
 
-## What I use
+## What I use for scafolding
 * @vue/cli 4.5.7
 
-## What I did
+## What I did for scafolding
 ```
 npm install -g @vue/cli
 vue create gym-log
