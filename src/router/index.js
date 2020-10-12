@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import List from '../views/List.vue'
 import Calendar from '../views/Calendar.vue'
 
 Vue.use(VueRouter)
@@ -15,6 +16,11 @@ const routes = [
     path: '/calendar',
     name: 'Calendar',
     component: Calendar
+  },
+  {
+    path: '/list',
+    name: 'List',
+    component: List
   },
   {
     path: '/about',

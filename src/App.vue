@@ -56,6 +56,7 @@ export default {
       ['mdi-delete', 'Trash'],
       ['mdi-alert-octagon', 'Spam'],
       ['', 'Calendar', '/calendar'],
+      ['', 'List', '/list'],
       ['', 'About', '/about'],
     ],
   })
