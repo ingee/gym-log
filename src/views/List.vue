@@ -82,7 +82,7 @@ export default {
     item: 1,
     items: [
       { text: '턱걸이', icon: 'mdi-counter' },
-      { text: '캐틀벨', icon: ['mdi-counter', 'mdi-weight-kilogram'] },
+      { text: '캐틀벨', icon: ['mdi-weight-kilogram', 'mdi-counter'] },
       { text: '스쿼트', icon: 'mdi-counter' },
     ],
   }),

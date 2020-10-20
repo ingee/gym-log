@@ -57,6 +57,7 @@ export default {
       ['mdi-alert-octagon', 'Spam'],
       ['', 'Calendar', '/calendar'],
       ['', 'List', '/list'],
+      ['', 'Count', '/count'],
       ['', 'About', '/about'],
     ],
   })
