@@ -58,6 +58,7 @@ export default {
       ['', 'Calendar', '/calendar'],
       ['', 'List', '/list'],
       ['', 'Count', '/count'],
+      ['', 'WeightCount', '/weight-count'],
       ['', 'About', '/about'],
     ],
   })

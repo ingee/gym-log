@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import List from '../views/List.vue'
 import Count from '../views/Count.vue'
+import WeightCount from '../views/WeightCount.vue'
 import Calendar from '../views/Calendar.vue'
 
 Vue.use(VueRouter)
@@ -27,6 +28,11 @@ const routes = [
     path: '/count',
     name: 'Count',
     component: Count
+  },
+  {
+    path: '/weight-count',
+    name: 'WeightCount',
+    component: WeightCount
   },
   {
     path: '/about',

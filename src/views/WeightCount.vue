@@ -10,7 +10,7 @@
         class="fill-height pa-4"
       >
         <v-col>
-          <span> 횟수 기록 </span>
+          <span> 무게/횟수 기록 </span>
         </v-col>
       </v-row>
     </v-sheet>
@@ -30,7 +30,16 @@
               <v-col cols="2" class="text-center">
                 <div v-text="(i+1) + ' 세트'"></div>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="3">
+                <v-text-field
+                  clearable
+                  dense
+                  hide-details="auto"
+                  label="무게"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
                 <v-text-field
                   clearable
                   dense
@@ -84,7 +93,7 @@
 <script>
 export default {
   data: () => ({
-    sets: [0]
+    sets: [{ weight: 0, count: 0 }]
   }),
   methods: {
     onAdd () {
