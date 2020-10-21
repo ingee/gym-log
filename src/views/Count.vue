@@ -65,14 +65,15 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <v-row>
-      <v-col cols="6">
+    <v-divider class="my-2"/>
+    <v-row no-gutters>
+      <v-col cols="6" class="px-1">
         <v-btn
           block
           color="primary"
         > 저장 </v-btn>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="6" class="px-1">
         <v-btn
           block
         > 취소 </v-btn>

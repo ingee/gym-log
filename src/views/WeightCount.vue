@@ -30,7 +30,7 @@
               <v-col cols="2" class="text-center">
                 <div v-text="(i+1) + ' 세트'"></div>
               </v-col>
-              <v-col cols="3">
+              <v-col cols="3" class="pr-1">
                 <v-text-field
                   clearable
                   dense
@@ -39,7 +39,7 @@
                   outlined
                 ></v-text-field>
               </v-col>
-              <v-col cols="3">
+              <v-col cols="3" class="pl-1">
                 <v-text-field
                   clearable
                   dense
@@ -74,14 +74,15 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <v-row>
-      <v-col cols="6">
+    <v-divider class="my-2"/>
+    <v-row no-gutters>
+      <v-col cols="6" class="px-1">
         <v-btn
           block
           color="primary"
         > 저장 </v-btn>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="6" class="px-1">
         <v-btn
           block
         > 취소 </v-btn>
