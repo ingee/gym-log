@@ -15,9 +15,7 @@
       </v-row>
     </v-sheet>
     <v-list>
-      <v-list-item-group
-        color="primary"
-      >
+      <v-list-item-group>
         <v-list-item
           v-for="(s, i) in sets"
           :key="i"
@@ -39,7 +37,7 @@
                   outlined
                 ></v-text-field>
               </v-col>
-              <v-col class="mx-4">
+              <v-col class="ml-4">
                 <v-btn
                   class="mx-1"
                   color="primary"

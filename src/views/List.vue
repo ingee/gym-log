@@ -37,7 +37,9 @@
               v-text="icon"
             ></v-icon>
           </v-list-item-icon>
-          <v-list-item-icon v-else>
+          <v-list-item-icon
+            v-else
+          >
             <v-icon
               v-text="item.icon"
             ></v-icon>

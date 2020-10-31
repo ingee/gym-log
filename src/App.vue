@@ -59,6 +59,7 @@ export default {
       ['', 'List', '/list'],
       ['', 'Count', '/count'],
       ['', 'WeightCount', '/weight-count'],
+      ['', 'Log', '/log'],
       ['', 'About', '/about'],
     ],
   })
