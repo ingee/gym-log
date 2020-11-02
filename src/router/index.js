@@ -1,19 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import List from '../views/List.vue'
+import Calendar from '../views/Calendar.vue'
+import Log from '../views/Log.vue'
+import WorkoutList from '../views/WorkoutList.vue'
 import Count from '../views/Count.vue'
 import WeightCount from '../views/WeightCount.vue'
-import Log from '../views/Log.vue'
-import Calendar from '../views/Calendar.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/calendar'
   },
   {
     path: '/calendar',
@@ -21,9 +19,14 @@ const routes = [
     component: Calendar
   },
   {
-    path: '/list',
-    name: 'List',
-    component: List
+    path: '/log',
+    name: 'Log',
+    component: Log
+  },
+  {
+    path: '/workouts',
+    name: 'WorkoutList',
+    component: WorkoutList
   },
   {
     path: '/count',
@@ -34,11 +37,6 @@ const routes = [
     path: '/weight-count',
     name: 'WeightCount',
     component: WeightCount
-  },
-  {
-    path: '/log',
-    name: 'Log',
-    component: Log
   },
   {
     path: '/about',

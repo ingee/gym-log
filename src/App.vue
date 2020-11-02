@@ -51,15 +51,11 @@ export default {
   data: () => ({
     drawer: null,
     links: [
-      ['mdi-inbox-arrow-down', 'Inbox'],
-      ['mdi-send', 'Send'],
-      ['mdi-delete', 'Trash'],
-      ['mdi-alert-octagon', 'Spam'],
       ['', 'Calendar', '/calendar'],
-      ['', 'List', '/list'],
+      ['', 'Log', '/log'],
+      ['', 'WorkoutList', '/workouts'],
       ['', 'Count', '/count'],
       ['', 'WeightCount', '/weight-count'],
-      ['', 'Log', '/log'],
       ['', 'About', '/about'],
     ],
   })
