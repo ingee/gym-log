@@ -9,6 +9,12 @@
         align="center"
         class="fill-height pa-4"
       >
+        <v-btn
+          icon color="white"
+          @click="$router.go(-1)"
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
         <v-col>
           <span> {{ date }}, 운동 기록 </span>
         </v-col>
@@ -46,6 +52,7 @@
         <v-btn
           block
           class="mb-2"
+          @click="$router.go(-1)"
         > 돌아가기 </v-btn>
       </v-col>
     </v-row>

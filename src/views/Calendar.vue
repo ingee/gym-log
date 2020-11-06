@@ -6,6 +6,7 @@
       :first-day-of-week="1"
       event-color="red"
       full-width
+      @click:date="onDate"
     ></v-date-picker>
     <v-fab-transition>
       <v-btn
@@ -15,6 +16,7 @@
         absolute
         bottom
         right
+        to="/workouts"
       >
         <v-icon>
           mdi-plus
@@ -30,15 +32,18 @@ export default {
     return {
       today: this.makeTodayStr(),
       workoutDays: [
-        this.makeDateStr(2020, 10, 1),
-        this.makeDateStr(2020, 10, 3),
-        this.makeDateStr(2020, 10, 5),
-        this.makeDateStr(2020, 10, 7),
-        this.makeDateStr(2020, 10, 9),
+        this.makeDateStr(2020, 11, 1),
+        this.makeDateStr(2020, 11, 3),
+        this.makeDateStr(2020, 11, 5),
+        this.makeDateStr(2020, 11, 7),
+        this.makeDateStr(2020, 11, 9),
       ]
     }
   },
   methods: {
+    onDate () {
+      this.$router.push({ name: 'Log' })
+    },
     makeDateStr (year, month, day) {
       return (new Date(`${year}-${month}-${day}`)).toISOString().substr(0, 10)
     },

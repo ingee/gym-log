@@ -9,6 +9,12 @@
         align="center"
         class="fill-height pa-4"
       >
+        <v-btn
+          icon color="white"
+          @click="$router.go(-1)"
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
         <v-col>
           <span> 운동 리스트 </span>
         </v-col>
@@ -49,9 +55,10 @@
           <v-list-item-action>
             <v-btn
               class="mx-2"
+              color="primary"
               fab
               x-small
-              color="primary"
+              :to="item.to"
             >
               <v-icon dark>
                 mdi-plus
@@ -68,6 +75,7 @@
         fab
         absolute
         bottom
+        disabled
         right
       >
         <v-icon>
@@ -83,9 +91,9 @@ export default {
   data: () => ({
     item: 1,
     items: [
-      { text: '턱걸이', icon: 'mdi-counter' },
-      { text: '캐틀벨', icon: ['mdi-weight-kilogram', 'mdi-counter'] },
-      { text: '스쿼트', icon: 'mdi-counter' },
+      { text: '턱걸이', icon: 'mdi-counter', to: '/count' },
+      { text: '캐틀벨', icon: ['mdi-weight-kilogram', 'mdi-counter'], to: '/weight-count' },
+      { text: '스쿼트', icon: 'mdi-counter', to: '/count' },
     ],
   }),
   methods: {

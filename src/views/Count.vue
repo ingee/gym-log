@@ -9,6 +9,12 @@
         align="center"
         class="fill-height pa-4"
       >
+        <v-btn
+          icon color="white"
+          @click="$router.go(-1)"
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
         <v-col>
           <span> 횟수 기록 </span>
         </v-col>
@@ -74,6 +80,7 @@
       <v-col cols="6" class="px-1">
         <v-btn
           block
+          @click="$router.go(-1)"
         > 취소 </v-btn>
       </v-col>
     </v-row>
