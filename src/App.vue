@@ -54,6 +54,7 @@ export default {
       ['', 'Calendar', '/calendar'],
       ['', 'Log', '/logs/2020-01-01'],
       ['', 'WorkoutList', '/workouts'],
+      ['', 'Workout', '/workout'],
       ['', 'Count', '/count'],
       ['', 'WeightCount', '/weight-count'],
       ['', 'About', '/about'],

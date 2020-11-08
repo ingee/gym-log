@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Calendar from '../views/Calendar.vue'
 import Log from '../views/Log.vue'
 import WorkoutList from '../views/WorkoutList.vue'
+import Workout from '../views/Workout.vue'
 import Count from '../views/Count.vue'
 import WeightCount from '../views/WeightCount.vue'
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/workouts',
     name: 'WorkoutList',
     component: WorkoutList
+  },
+  {
+    path: '/workout',
+    name: 'Workout',
+    component: Workout
   },
   {
     path: '/count',

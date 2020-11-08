@@ -21,33 +21,21 @@
       </v-row>
     </v-sheet>
     <v-list>
-      <v-list-item-group
-        v-model="item"
-        color="primary"
-      >
+      <v-list-item-group color="primary">
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(w, i) in workouts"
           :key="i"
         >
           <!-- workout name -->
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="w.name"></v-list-item-title>
           </v-list-item-content>
           <!-- workout icon -->
-          <v-list-item-icon
-            v-if="item.icon instanceof Array"
-          >
+          <v-list-item-icon>
             <v-icon
-              v-for="(icon, j) in item.icon"
+              v-for="(icon, j) in w.icons"
               :key="j"
               v-text="icon"
-            ></v-icon>
-          </v-list-item-icon>
-          <v-list-item-icon
-            v-else
-          >
-            <v-icon
-              v-text="item.icon"
             ></v-icon>
           </v-list-item-icon>
           <v-spacer/>
@@ -58,7 +46,7 @@
               color="primary"
               fab
               x-small
-              :to="item.to"
+              @click="onWriteWorkout(i)"
             >
               <v-icon dark>
                 mdi-plus
@@ -87,16 +75,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data: () => ({
-    item: 1,
-    items: [
-      { text: '턱걸이', icon: 'mdi-counter', to: '/count' },
-      { text: '캐틀벨', icon: ['mdi-weight-kilogram', 'mdi-counter'], to: '/weight-count' },
-      { text: '스쿼트', icon: 'mdi-counter', to: '/count' },
-    ],
-  }),
+  computed: mapState([
+    'workouts'
+  ]),
   methods: {
+    onWriteWorkout (i) {
+      this.$store.commit('setCurWorkout', i)
+      this.$router.push({ name: 'Workout' })
+    }
   }
 }
 </script>
