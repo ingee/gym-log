@@ -19,7 +19,7 @@ const routes = [
     component: Calendar
   },
   {
-    path: '/log',
+    path: '/logs/:date',
     name: 'Log',
     component: Log
   },

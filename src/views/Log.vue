@@ -16,7 +16,7 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-col>
-          <span> {{ date }}, 운동 기록 </span>
+          <span> {{ $route.params.date }} 기록 </span>
         </v-col>
       </v-row>
     </v-sheet>
@@ -62,7 +62,6 @@
 <script>
 export default {
   data: () => ({
-    date: '10/22',
     workouts: [
       { name: '턱걸이', labels: ['회'], sets: [[4], [4], [4]] },
       { name: '캐틀벨', labels: ['kg', '회'], sets: [[10, 3], [10, 3], [10, 3]] },

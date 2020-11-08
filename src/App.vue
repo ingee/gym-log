@@ -52,7 +52,7 @@ export default {
     drawer: null,
     links: [
       ['', 'Calendar', '/calendar'],
-      ['', 'Log', '/log'],
+      ['', 'Log', '/logs/2020-01-01'],
       ['', 'WorkoutList', '/workouts'],
       ['', 'Count', '/count'],
       ['', 'WeightCount', '/weight-count'],

@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     onDate () {
-      this.$router.push({ name: 'Log' })
+      this.$router.push({ name: 'Log', params: { date: this.today } })
     },
     makeDateStr (year, month, day) {
       return (new Date(`${year}-${month}-${day}`)).toISOString().substr(0, 10)
