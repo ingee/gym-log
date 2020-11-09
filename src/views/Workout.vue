@@ -16,14 +16,14 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-col>
-          <span> 횟수 기록 </span>
+          <span>{{ curWorkout.name }}</span>
         </v-col>
       </v-row>
     </v-sheet>
     <v-list>
       <v-list-item-group>
         <v-list-item
-          v-for="(s, i) in sets"
+          v-for="(set, i) in sets"
           :key="i"
         >
           <v-list-item-content>
@@ -34,12 +34,16 @@
               <v-col cols="2" class="text-center">
                 <div v-text="(i+1) + ' 세트'"></div>
               </v-col>
-              <v-col cols="6">
+              <v-col
+                v-for="(field, j) in curWorkout.labels"
+                :key="j"
+                :cols="6/curWorkout.labels.length"
+              >
                 <v-text-field
                   clearable
                   dense
                   hide-details="auto"
-                  label="횟수"
+                  :label="curWorkout.labels[j]"
                   outlined
                 ></v-text-field>
               </v-col>
@@ -88,10 +92,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data: () => ({
-    sets: [0]
+    sets: null
   }),
+  computed: mapState([
+    'curWorkout'
+  ]),
   methods: {
     onAdd () {
       this.sets.push(0)
@@ -99,6 +108,13 @@ export default {
     onDel (i) {
       this.sets.splice(i, 1)
     }
+  },
+  created () {
+    const aSet = []
+    for (let i = 0; i < this.curWorkout.labels.length; i++) {
+      aSet.push(0)
+    }
+    this.sets = [aSet]
   }
 }
 </script>
