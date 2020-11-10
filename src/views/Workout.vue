@@ -40,11 +40,13 @@
                 :cols="6/curWorkout.labels.length"
               >
                 <v-text-field
+                  v-model.number="set[j]"
+                  :label="curWorkout.labels[j]"
                   clearable
                   dense
                   hide-details="auto"
-                  :label="curWorkout.labels[j]"
                   outlined
+                  type="number"
                 ></v-text-field>
               </v-col>
               <v-col class="ml-4">
@@ -102,18 +104,24 @@ export default {
     'curWorkout'
   ]),
   methods: {
+    mkOneSet () {
+      const aSet = []
+      for (let i = 0; i < this.curWorkout.labels.length; i++) {
+        aSet.push(0)
+      }
+      return aSet
+    },
     onAdd () {
-      this.sets.push(0)
+      const aSet = this.mkOneSet()
+      this.sets.push(aSet)
     },
     onDel (i) {
+      console.log(`sets[${i}]= `, this.sets[i])
       this.sets.splice(i, 1)
     }
   },
   created () {
-    const aSet = []
-    for (let i = 0; i < this.curWorkout.labels.length; i++) {
-      aSet.push(0)
-    }
+    const aSet = this.mkOneSet()
     this.sets = [aSet]
   }
 }
