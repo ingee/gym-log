@@ -12,6 +12,11 @@ export default new Vuex.Store({
         labels: ['회']
       },
       {
+        name: '기계보조 턱걸이',
+        icons: ['mdi-weight-kilogram', 'mdi-counter'],
+        labels: ['kg', '회']
+      },
+      {
         name: '캐틀벨',
         icons: ['mdi-weight-kilogram', 'mdi-counter'],
         labels: ['kg', '회']
@@ -21,13 +26,9 @@ export default new Vuex.Store({
         icons: ['mdi-counter'],
         labels: ['회']
       }
-    ],
-    curWorkout: null
+    ]
   },
   mutations: {
-    setCurWorkout (state, i) {
-      state.curWorkout = state.workouts[i]
-    }
   },
   actions: {
   },

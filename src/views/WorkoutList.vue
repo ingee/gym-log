@@ -38,7 +38,6 @@
               v-text="icon"
             ></v-icon>
           </v-list-item-icon>
-          <v-spacer/>
           <!-- workout button -->
           <v-list-item-action>
             <v-btn
@@ -46,7 +45,7 @@
               color="primary"
               fab
               x-small
-              @click="onWriteWorkout(i)"
+              :to="'/workouts/' + i"
             >
               <v-icon dark>
                 mdi-plus
@@ -80,12 +79,6 @@ import { mapState } from 'vuex'
 export default {
   computed: mapState([
     'workouts'
-  ]),
-  methods: {
-    onWriteWorkout (i) {
-      this.$store.commit('setCurWorkout', i)
-      this.$router.push({ name: 'Workout' })
-    }
-  }
+  ])
 }
 </script>

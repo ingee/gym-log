@@ -30,7 +30,7 @@ const routes = [
     component: WorkoutList
   },
   {
-    path: '/workout',
+    path: '/workouts/:id',
     name: 'Workout',
     component: Workout
   },

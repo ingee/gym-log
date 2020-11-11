@@ -16,7 +16,7 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-col>
-          <span>{{ curWorkout.name }}</span>
+          <span>{{ workout.name }}</span>
         </v-col>
       </v-row>
     </v-sheet>
@@ -35,13 +35,13 @@
                 <div v-text="(i+1) + ' 세트'"></div>
               </v-col>
               <v-col
-                v-for="(field, j) in curWorkout.labels"
+                v-for="(field, j) in workout.labels"
                 :key="j"
-                :cols="6/curWorkout.labels.length"
+                :cols="6/workout.labels.length"
               >
                 <v-text-field
                   v-model.number="set[j]"
-                  :label="curWorkout.labels[j]"
+                  :label="workout.labels[j]"
                   clearable
                   dense
                   hide-details="auto"
@@ -98,22 +98,22 @@ import { mapState } from 'vuex'
 
 export default {
   data: () => ({
+    workout: null,
     sets: null
   }),
   computed: mapState([
-    'curWorkout'
+    'workouts'
   ]),
   methods: {
     mkOneSet () {
       const aSet = []
-      for (let i = 0; i < this.curWorkout.labels.length; i++) {
+      for (let i = 0; i < this.workout.labels.length; i++) {
         aSet.push(0)
       }
       return aSet
     },
     onAdd () {
-      const aSet = this.mkOneSet()
-      this.sets.push(aSet)
+      this.sets.push(this.mkOneSet())
     },
     onDel (i) {
       console.log(`sets[${i}]= `, this.sets[i])
@@ -121,8 +121,8 @@ export default {
     }
   },
   created () {
-    const aSet = this.mkOneSet()
-    this.sets = [aSet]
+    this.workout = this.workouts[this.$route.params.id]
+    this.sets = [this.mkOneSet()]
   }
 }
 </script>
