@@ -81,6 +81,7 @@
         <v-btn
           block
           color="primary"
+          @click="onOK"
         > 저장 </v-btn>
       </v-col>
       <v-col cols="6" class="px-1">
@@ -118,6 +119,28 @@ export default {
     onDel (i) {
       console.log(`sets[${i}]= `, this.sets[i])
       this.sets.splice(i, 1)
+    },
+    onOK () {
+      // Daily Workout Data Sample
+      // ===
+      // date: '2020-12-12',
+      // [
+      //   {
+      //     name: '캐틀벨',
+      //     labels: ['kg','회']
+      //     sets: [
+      //       [10,3], [10,3], [10,3]
+      //     ]
+      //   },
+      //   {
+      //     name: '턱걸이',
+      //     labels: ['회']
+      //     sets: [
+      //       [4], [4], [4]
+      //     ]
+      //   },
+      //   ...
+      // ]
     }
   },
   created () {

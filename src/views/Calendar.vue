@@ -32,11 +32,11 @@ export default {
     return {
       today: this.makeTodayStr(),
       workoutDays: [
-        this.makeDateStr(2020, 11, 1),
-        this.makeDateStr(2020, 11, 3),
-        this.makeDateStr(2020, 11, 5),
-        this.makeDateStr(2020, 11, 7),
-        this.makeDateStr(2020, 11, 9),
+        this.makeDateStr(2020, 12, 1),
+        this.makeDateStr(2020, 12, 3),
+        this.makeDateStr(2020, 12, 5),
+        this.makeDateStr(2020, 12, 7),
+        this.makeDateStr(2020, 12, 9),
       ]
     }
   },

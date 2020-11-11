@@ -1,6 +1,11 @@
 # gym-log
 Daily workout log
 
+Completely work offline. Nothing is uploaded to cloud. No worry about privacy.
+Since 2020-12-01
+
+---
+
 ## Project setup
 ```
 npm install
