@@ -25,10 +25,19 @@
         <v-list-item
           v-for="(w, i) in workouts"
           :key="i"
+          :to="'/workouts/' + i"
         >
           <!-- workout name -->
           <v-list-item-content>
-            <v-list-item-title v-text="w.name"></v-list-item-title>
+            <v-list-item-title>
+              <v-badge
+                offset-x="-4"
+                :content="workouts[i].today.length"
+                :value="workouts[i].today.length"
+              >
+                {{ w.name }}
+              </v-badge>
+            </v-list-item-title>
           </v-list-item-content>
           <!-- workout icon -->
           <v-list-item-icon>
@@ -39,19 +48,22 @@
             ></v-icon>
           </v-list-item-icon>
           <!-- workout button -->
-          <v-list-item-action>
+          <v-list-item-action-text class="ml-4">
             <v-btn
-              class="mx-2"
               color="primary"
-              fab
-              x-small
+              icon
               :to="'/workouts/' + i"
             >
-              <v-icon dark>
-                mdi-plus
-              </v-icon>
+              <v-icon> mdi-plus-circle </v-icon>
             </v-btn>
-          </v-list-item-action>
+            <v-btn
+              color="error"
+              icon
+              @click.prevent="removeToday(i)"
+            >
+              <v-icon> mdi-close-circle </v-icon>
+            </v-btn>
+          </v-list-item-action-text>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -79,6 +91,11 @@ import { mapState } from 'vuex'
 export default {
   computed: mapState([
     'workouts'
-  ])
+  ]),
+  methods: {
+    removeToday (workoutID) {
+      this.$store.commit('rmTodayWorkout', workoutID)
+    }
+  }
 }
 </script>

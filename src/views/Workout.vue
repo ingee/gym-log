@@ -55,7 +55,7 @@
                   color="primary"
                   fab
                   x-small
-                  @click="onAdd"
+                  @click="onAdd(i)"
                 >
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn>
@@ -99,8 +99,9 @@ import { mapState } from 'vuex'
 
 export default {
   data: () => ({
+    workoutID: null,
     workout: null,
-    sets: null
+    sets: null,
   }),
   computed: mapState([
     'workouts'
@@ -113,39 +114,31 @@ export default {
       }
       return aSet
     },
-    onAdd () {
-      this.sets.push(this.mkOneSet())
+    onAdd (i) {
+      const aCopy = JSON.parse(JSON.stringify(this.sets[i]))
+      this.sets.splice(i, 0, aCopy)
     },
     onDel (i) {
       console.log(`sets[${i}]= `, this.sets[i])
       this.sets.splice(i, 1)
     },
     onOK () {
-      // Daily Workout Data Sample
-      // ===
-      // date: '2020-12-12',
-      // [
-      //   {
-      //     name: '캐틀벨',
-      //     labels: ['kg','회']
-      //     sets: [
-      //       [10,3], [10,3], [10,3]
-      //     ]
-      //   },
-      //   {
-      //     name: '턱걸이',
-      //     labels: ['회']
-      //     sets: [
-      //       [4], [4], [4]
-      //     ]
-      //   },
-      //   ...
-      // ]
+      this.$store.commit('putTodayWorkout', {
+        id: this.workoutID,
+        name: this.workout.name,
+        sets: this.sets
+      })
+      this.$router.go(-1)
     }
   },
   created () {
-    this.workout = this.workouts[this.$route.params.id]
-    this.sets = [this.mkOneSet()]
+    this.workoutID = this.$route.params.id
+    this.workout = this.workouts[this.workoutID]
+    if (this.workout.today.length) {
+      this.sets = this.workout.today
+    } else {
+      this.sets = [this.mkOneSet()]
+    }
   }
 }
 </script>
