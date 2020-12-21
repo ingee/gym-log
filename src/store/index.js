@@ -91,8 +91,32 @@ export default new Vuex.Store({
       const w = state.workouts[id]
       w.today = []
       delete state.workoutToday[w.name]
-      console.log('dbg@store workoutToday=', state.workoutToday)
-      console.log('dbg@store workouts=', state.workouts)
+    },
+    putTodayWorkoutToLogs (state, { name, labels, sets }) {
+      const todayLog = {
+        date: new Date().toLocaleDateString(),
+        workout: name,
+        labels: labels,
+        sets: sets
+      }
+      const idx = state.workoutLogs.findIndex(
+        log => (log.date === todayLog.date && log.workout === todayLog.workout)
+      )
+      if (idx === -1) {
+        state.workoutLogs.push(todayLog)
+      } else {
+        state.workoutLogs[idx] = todayLog
+      }
+    },
+    rmTodayWorkoutFromLogs (state, id) {
+      const today = new Date().toLocaleDateString()
+      const workout = state.workouts[id].name
+      const idx = state.workoutLogs.findIndex(
+        log => (log.date === today && log.workout === workout)
+      )
+      if (idx !== -1) {
+        state.workoutLogs.splice(idx, 1)
+      }
     }
   },
   actions: {
