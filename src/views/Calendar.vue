@@ -30,25 +30,19 @@
 export default {
   data () {
     return {
-      today: this.makeTodayStr(),
+      today: this.$dateStr.makeTodayStr(),
       workoutDays: [
-        this.makeDateStr(2020, 12, 1),
-        this.makeDateStr(2020, 12, 3),
-        this.makeDateStr(2020, 12, 5),
-        this.makeDateStr(2020, 12, 7),
-        this.makeDateStr(2020, 12, 9),
+        this.$dateStr.makeDateStr(2020, 12, 1),
+        this.$dateStr.makeDateStr(2020, 12, 3),
+        this.$dateStr.makeDateStr(2020, 12, 5),
+        this.$dateStr.makeDateStr(2020, 12, 7),
+        this.$dateStr.makeDateStr(2020, 12, 9),
       ]
     }
   },
   methods: {
     onDate () {
       this.$router.push({ name: 'Log', params: { date: this.today } })
-    },
-    makeDateStr (year, month, day) {
-      return (new Date(`${year}-${month}-${day}`)).toISOString().substr(0, 10)
-    },
-    makeTodayStr () {
-      return (new Date()).toISOString().substr(0, 10)
     }
   }
 }
