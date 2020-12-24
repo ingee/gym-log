@@ -21,14 +21,14 @@
       </v-row>
     </v-sheet>
     <v-card
-      v-for="(workout, i) in workouts"
+      v-for="(log, i) in todayLogs"
       :key="i"
       class="my-2 mx-4" color="grey lighten-5"
     >
-      <v-card-title> {{ workout.name }} </v-card-title>
+      <v-card-title> {{ log.workout }} </v-card-title>
       <v-card-text>
         <v-row
-          v-for="(set, j) in workout.sets"
+          v-for="(set, j) in log.sets"
           :key="j"
           align="center" no-gutters
         >
@@ -41,7 +41,7 @@
             :key="k"
             cols="4"
           >
-            <span class="text-body-1"> {{ data }}{{ workout.labels[k] }} </span>
+            <span class="text-body-1"> {{ data }}{{ log.labels[k] }} </span>
           </v-col>
         </v-row>
       </v-card-text>
@@ -60,13 +60,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data: () => ({
-    workouts: [
-      { name: '턱걸이', labels: ['회'], sets: [[4], [4], [4]] },
-      { name: '캐틀벨', labels: ['kg', '회'], sets: [[10, 3], [10, 3], [10, 3]] },
-      { name: '스쿼트', labels: ['회'], sets: [[20], [20], [20]] }
-    ]
-  })
+    todayLogs: []
+  }),
+  computed: mapState([
+    'workoutLogs'
+  ]),
+  created () {
+    this.todayLogs = this.workoutLogs.filter(
+      log => log.date === this.$route.params.date
+    )
+  }
 }
 </script>
