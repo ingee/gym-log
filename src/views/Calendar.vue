@@ -27,23 +27,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
       today: this.$dateStr.makeTodayStr(),
-      workoutDays: [
-        this.$dateStr.makeDateStr(2020, 12, 1),
-        this.$dateStr.makeDateStr(2020, 12, 3),
-        this.$dateStr.makeDateStr(2020, 12, 5),
-        this.$dateStr.makeDateStr(2020, 12, 7),
-        this.$dateStr.makeDateStr(2020, 12, 9),
-      ]
+      workoutDays: []
     }
   },
+  computed: mapState([
+    'workoutLogs'
+  ]),
   methods: {
     onDate () {
       this.$router.push({ name: 'Log', params: { date: this.today } })
     }
+  },
+  created () {
+    this.workoutDays = this.workoutLogs.map(logs => logs.date)
   }
 }
 </script>
