@@ -123,9 +123,10 @@ export default {
       this.sets.splice(i, 1)
     },
     onOK () {
-      this.$store.commit('putTodayWorkout', {
+      this.$store.dispatch('putTodayWorkout', {
         id: this.workoutID,
         name: this.workout.name,
+        labels: this.workout.labels,
         sets: this.sets
       })
       this.$router.go(-1)

@@ -53,48 +53,35 @@ export default new Vuex.Store({
       //   sets: [[10, 3], [10, 3], [10, 3]]
       // }
       {
-        date: '2020-12-13',
+        date: '2021-01-13',
         workout: '스쿼트',
         labels: ['회'],
         sets: [[20], [20], [20]]
       },
       {
-        date: '2020-12-14',
+        date: '2021-01-14',
         workout: '턱걸이',
         labels: ['회'],
         sets: [[4], [4], [4]]
       },
       {
-        date: '2020-12-14',
+        date: '2021-01-14',
         workout: '캐틀벨',
         labels: ['kg', '회'],
         sets: [[10, 3], [10, 3], [10, 3]]
       }
-    ],
-    workoutToday: {
-      // Daily Workout Sample
-      // ===
-      // {
-      //   '캐틀벨': 2,
-      //   '턱걸이': 0,
-      //   'name-of-workout': index-of-workout in workouts,
-      //   ...
-      // },
-    }
+    ]
   },
   mutations: {
     putTodayWorkout (state, { id, name, sets }) {
       state.workouts[id].today = sets
-      state.workoutToday[name] = id
     },
     rmTodayWorkout (state, id) {
-      const w = state.workouts[id]
-      w.today = []
-      delete state.workoutToday[w.name]
+      state.workouts[id].today = []
     },
     putTodayWorkoutToLogs (state, { name, labels, sets }) {
       const todayLog = {
-        date: new Date().toLocaleDateString(),
+        date: this._vm.$dateStr.makeTodayStr(),
         workout: name,
         labels: labels,
         sets: sets
@@ -109,7 +96,7 @@ export default new Vuex.Store({
       }
     },
     rmTodayWorkoutFromLogs (state, id) {
-      const today = new Date().toLocaleDateString()
+      const today = this._vm.$dateStr.makeTodayStr()
       const workout = state.workouts[id].name
       const idx = state.workoutLogs.findIndex(
         log => (log.date === today && log.workout === workout)
@@ -120,6 +107,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getWorkoutLogs (context) {
+    },
+    async putTodayWorkout ({ commit, state }, { id, name, labels, sets }) {
+      commit('putTodayWorkout', { id, name, sets })
+      commit('putTodayWorkoutToLogs', { name, labels, sets })
+    },
+    async rmTodayWorkout ({ commit }, workoutID) {
+      commit('rmTodayWorkout', workoutID)
+      commit('rmTodayWorkoutFromLogs', workoutID)
+    },
   },
   modules: {
   }

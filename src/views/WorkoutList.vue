@@ -94,7 +94,7 @@ export default {
   ]),
   methods: {
     removeToday (workoutID) {
-      this.$store.commit('rmTodayWorkout', workoutID)
+      this.$store.dispatch('rmTodayWorkout', workoutID)
     }
   }
 }
