@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-date-picker
-      v-model="today"
       :events="workoutDays"
       :first-day-of-week="1"
       event-color="red"
       full-width
       @click:date="onDate"
+      @click:year="onClickYear"
     ></v-date-picker>
     <v-fab-transition>
       <v-btn
@@ -40,12 +40,26 @@ export default {
     'workoutLogs'
   ]),
   methods: {
-    onDate () {
-      this.$router.push({ name: 'Log', params: { date: this.today } })
+    async loadWorkoutLogs (year) {
+      await this.$store.dispatch('getWorkoutLogs', year)
+      this.workoutDays = this.workoutLogs.map(logs => logs.date)
+    },
+    onDate (date) {
+      console.log('dbg@onDate() date=', date)
+      if (date > this.today) {
+        return
+      }
+      if (!this.workoutDays.includes(date)) {
+        return
+      }
+      this.$router.push({ name: 'Log', params: { date } })
+    },
+    onClickYear (year) {
+      this.loadWorkoutLogs(year)
     }
   },
-  created () {
-    this.workoutDays = this.workoutLogs.map(logs => logs.date)
+  async created () {
+    this.loadWorkoutLogs((new Date()).getFullYear())
   }
 }
 </script>

@@ -52,24 +52,6 @@ export default new Vuex.Store({
       //   labels: ['kg', '회'],
       //   sets: [[10, 3], [10, 3], [10, 3]]
       // }
-      {
-        date: '2021-01-13',
-        workout: '스쿼트',
-        labels: ['회'],
-        sets: [[20], [20], [20]]
-      },
-      {
-        date: '2021-01-14',
-        workout: '턱걸이',
-        labels: ['회'],
-        sets: [[4], [4], [4]]
-      },
-      {
-        date: '2021-01-14',
-        workout: '캐틀벨',
-        labels: ['kg', '회'],
-        sets: [[10, 3], [10, 3], [10, 3]]
-      }
     ]
   },
   mutations: {
@@ -107,7 +89,27 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getWorkoutLogs (context) {
+    async getWorkoutLogs ({ context, state }, year) {
+      state.workoutLogs = [
+        {
+          date: this._vm.$dateStr.makeDateStr(year, 1, 5),
+          workout: '스쿼트',
+          labels: ['회'],
+          sets: [[20], [20], [20]]
+        },
+        {
+          date: this._vm.$dateStr.makeDateStr(year, 1, 14),
+          workout: '턱걸이',
+          labels: ['회'],
+          sets: [[4], [4], [4]]
+        },
+        {
+          date: this._vm.$dateStr.makeDateStr(year, 1, 14),
+          workout: '캐틀벨',
+          labels: ['kg', '회'],
+          sets: [[10, 3], [10, 3], [10, 3]]
+        }
+      ]
     },
     async putTodayWorkout ({ commit, state }, { id, name, labels, sets }) {
       commit('putTodayWorkout', { id, name, sets })
