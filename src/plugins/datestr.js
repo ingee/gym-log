@@ -3,7 +3,9 @@ function makeDateStr (year, month, day) {
 }
 
 function makeTodayStr () {
-  return (new Date()).toISOString().substr(0, 10)
+  const tzOffset = new Date().getTimezoneOffset() * 60000
+  const tzDate = new Date(Date.now() - tzOffset)
+  return tzDate.toISOString().substr(0, 10)
 }
 
 export default {

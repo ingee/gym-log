@@ -45,7 +45,6 @@ export default {
       this.workoutDays = this.workoutLogs.map(logs => logs.date)
     },
     onDate (date) {
-      console.log('dbg@onDate() date=', date)
       if (date > this.today) {
         return
       }

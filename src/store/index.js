@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import idb from './api/idb'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    year: null,
     workouts: [
       {
         name: '턱걸이',
@@ -55,7 +57,7 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    putTodayWorkout (state, { id, name, sets }) {
+    putTodayWorkout (state, { id, sets }) {
       state.workouts[id].today = sets
     },
     rmTodayWorkout (state, id) {
@@ -90,34 +92,28 @@ export default new Vuex.Store({
   },
   actions: {
     async getWorkoutLogs ({ context, state }, year) {
-      state.workoutLogs = [
-        {
-          date: this._vm.$dateStr.makeDateStr(year, 1, 5),
-          workout: '스쿼트',
-          labels: ['회'],
-          sets: [[20], [20], [20]]
-        },
-        {
-          date: this._vm.$dateStr.makeDateStr(year, 1, 14),
-          workout: '턱걸이',
-          labels: ['회'],
-          sets: [[4], [4], [4]]
-        },
-        {
-          date: this._vm.$dateStr.makeDateStr(year, 1, 14),
-          workout: '캐틀벨',
-          labels: ['kg', '회'],
-          sets: [[10, 3], [10, 3], [10, 3]]
-        }
-      ]
+      if (String(state.year) !== String(year)) {
+        state.year = year
+        state.workoutLogs = await idb.getLogs(year)
+      }
     },
     async putTodayWorkout ({ commit, state }, { id, name, labels, sets }) {
       commit('putTodayWorkout', { id, name, sets })
       commit('putTodayWorkoutToLogs', { name, labels, sets })
+      await idb.putLog({
+        date: this._vm.$dateStr.makeTodayStr(),
+        workout: name,
+        labels,
+        sets
+      })
     },
-    async rmTodayWorkout ({ commit }, workoutID) {
+    async rmTodayWorkout ({ commit, state }, workoutID) {
       commit('rmTodayWorkout', workoutID)
       commit('rmTodayWorkoutFromLogs', workoutID)
+      await idb.rmLog({
+        date: this._vm.$dateStr.makeTodayStr(),
+        workout: state.workouts[workoutID].name
+      })
     },
   },
   modules: {
