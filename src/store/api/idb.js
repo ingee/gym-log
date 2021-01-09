@@ -57,24 +57,39 @@ export default {
 
   async putLog ({ date, workout, labels, sets }) {
     const db = await this.getDB()
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const tx = db.transaction([STORE_NAME], 'readwrite')
       tx.oncomplete = () => {
         console.log(`@idb: putLog(${date}, ${workout}) OK`)
         resolve()
       }
+      tx.onerror = e => {
+        console.log(`@idb: putLog(${date}, ${workout}) ERR: ${e}`)
+        reject(e)
+      }
       const store = tx.objectStore(STORE_NAME)
-      store.put({ date, workout, labels, sets })
+      const req = store.put({ date, workout, labels, sets })
+      req.onerror = e => {
+        if (req.error.name === 'QuotaExceededError') {
+          // Let's implement this latter
+          //  - https://www.w3.org/TR/WebIDL-1/#quotaexceedederror
+          //  - 2021-01-09 InGee
+        }
+      }
     })
   },
 
   async rmLog ({ date, workout }) {
     const db = await this.getDB()
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const tx = db.transaction([STORE_NAME], 'readwrite')
       tx.oncomplete = () => {
         console.log(`@idb: rmLog(${date}, ${workout}) OK`)
         resolve()
+      }
+      tx.onerror = e => {
+        console.log(`@idb: rmLog(${date}, ${workout}) ERR: ${e}`)
+        reject(e)
       }
       const store = tx.objectStore(STORE_NAME)
       const index = store.index('date')
