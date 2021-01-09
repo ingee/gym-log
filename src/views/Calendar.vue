@@ -3,10 +3,12 @@
     <v-date-picker
       :events="workoutDays"
       :first-day-of-week="1"
-      event-color="red"
-      full-width
       @click:date="onDate"
       @click:year="onClickYear"
+      @update:picker-date="onUpdate"
+      event-color="red"
+      full-width
+      v-model="selectedDate"
     ></v-date-picker>
     <v-fab-transition>
       <v-btn
@@ -33,6 +35,7 @@ export default {
   data () {
     return {
       today: this.$dateStr.makeTodayStr(),
+      selectedDate: this.$dateStr.makeTodayStr(),
       workoutDays: []
     }
   },
@@ -44,17 +47,17 @@ export default {
       await this.$store.dispatch('getWorkoutLogs', year)
       this.workoutDays = this.workoutLogs.map(logs => logs.date)
     },
-    onDate (date) {
-      if (date > this.today) {
-        return
-      }
-      if (!this.workoutDays.includes(date)) {
-        return
-      }
-      this.$router.push({ name: 'Log', params: { date } })
-    },
     onClickYear (year) {
       this.loadWorkoutLogs(year)
+    },
+    onUpdate (updatedDate) {
+      const updatedYear = updatedDate.substr(0, 4)
+      this.loadWorkoutLogs(updatedYear)
+    },
+    onDate (date) {
+      if (date <= this.today && this.workoutDays.includes(date)) {
+        this.$router.push({ name: 'Log', params: { date } })
+      }
     }
   },
   async created () {
