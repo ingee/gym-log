@@ -7,7 +7,7 @@
     >
       <v-row
         align="center"
-        class="fill-height pa-4"
+        class="fill-height ma-0"
       >
         <v-btn
           icon color="white"
