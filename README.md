@@ -1,8 +1,10 @@
 # gym-log
 Daily workout log
 
-Completely work offline. Nothing is uploaded to cloud. No worry about privacy.
+Completely offline. Nothing is uploaded to cloud. No worry about privacy.
 Since 2020-12-01
+
+Check [README-dev](./README-dev.md).
 
 ---
 
