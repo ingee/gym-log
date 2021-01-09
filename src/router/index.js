@@ -4,8 +4,6 @@ import Calendar from '../views/Calendar.vue'
 import Log from '../views/Log.vue'
 import WorkoutList from '../views/WorkoutList.vue'
 import Workout from '../views/Workout.vue'
-import Count from '../views/Count.vue'
-import WeightCount from '../views/WeightCount.vue'
 
 Vue.use(VueRouter)
 
@@ -33,16 +31,6 @@ const routes = [
     path: '/workouts/:id',
     name: 'Workout',
     component: Workout
-  },
-  {
-    path: '/count',
-    name: 'Count',
-    component: Count
-  },
-  {
-    path: '/weight-count',
-    name: 'WeightCount',
-    component: WeightCount
   },
   {
     path: '/about',

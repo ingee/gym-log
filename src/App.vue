@@ -5,15 +5,12 @@
       app
     >
       <v-sheet
-        color="grey lighten-4"
+        color="red white--text"
         class="pa-4"
       >
-        <v-avatar
-          class="mb-4"
-          color="grey darken-1"
-          size="64"
-        ></v-avatar>
-        <div>john@vuetifyjs.com</div>
+        <div class="text-h3">Gym-log</div>
+        <br/>
+        <div class="text-right text-subtitle-1">Daily Workout Log</div>
       </v-sheet>
       <v-divider></v-divider>
 
@@ -51,13 +48,8 @@ export default {
   data: () => ({
     drawer: null,
     links: [
-      ['', 'Calendar', '/calendar'],
-      ['', 'Log', '/logs/2020-01-01'],
-      ['', 'WorkoutList', '/workouts'],
-      ['', 'Workout', '/workout'],
-      ['', 'Count', '/count'],
-      ['', 'WeightCount', '/weight-count'],
-      ['', 'About', '/about'],
+      ['mdi-home', 'Home', '/calendar'],
+      ['mdi-information', 'About', '/about'],
     ],
   })
 }
