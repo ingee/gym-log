@@ -3,6 +3,10 @@ const fs = require("fs");
 
 (async () => {
   try {
+    const timeStr = new Date().toISOString()
+    const patternStr = "s/REL_TIME/" + timeStr + "/g"
+    console.log("Release time :", timeStr)
+    await execa("sed", ["-i", patternStr, "src/views/About.vue"]);
     await execa("git", ["checkout", "--orphan", "gh-pages"]);
     console.log("Building...");
     await execa("npm", ["run", "build"]);

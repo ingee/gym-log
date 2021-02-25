@@ -13,5 +13,6 @@
     </ul>
     <br/>
     <hr/>
+    <span>Released at REL_TIME</span>
   </div>
 </template>
