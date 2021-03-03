@@ -8,7 +8,7 @@
       <li>Written by InGee</li>
       <li>Save data in local machine (Not in cloud)</li>
       <li>No worry about privacy</li>
-      <li>All lefts are reserved by MIT License</li>
+      <li>All lefts are reserved under MIT License</li>
       <li>Since 2020.10.10</li>
     </ul>
     <br/>
