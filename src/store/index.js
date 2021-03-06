@@ -31,7 +31,13 @@ export default new Vuex.Store({
         icons: ['mdi-counter'],
         labels: ['회'],
         today: [] // ex) [[4], [4], [4]]
-      }
+      },
+      {
+        name: '팔굽혀펴기',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+        today: [] // ex) [[10], [10], [10]]
+      },
     ],
     workoutLogs: [
       // Workout Log Sample
