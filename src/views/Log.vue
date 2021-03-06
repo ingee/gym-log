@@ -34,7 +34,7 @@
         >
           <v-col cols="4">
             <v-chip outlined color="primary" class="ml-2"
-            > {{ j }}세트 </v-chip>
+            > {{ j+1 }}세트 </v-chip>
           </v-col>
           <v-col
             v-for="(data, k) in set"
