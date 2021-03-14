@@ -22,8 +22,8 @@ export default new Vuex.Store({
       },
       {
         name: '캐틀벨',
-        icons: ['mdi-weight-kilogram', 'mdi-counter'],
-        labels: ['kg', '회'],
+        icons: ['mdi-weight-kilogram', 'mdi-timer-outline'],
+        labels: ['kg', '초'],
         today: [] // ex) [[10,3], [10,3], [10,3]]
       },
       {
