@@ -15,10 +15,10 @@ export default new Vuex.Store({
         today: [] // ex) [[4], [4], [4]]
       },
       {
-        name: '기계보조 턱걸이',
-        icons: ['mdi-weight-kilogram', 'mdi-counter'],
-        labels: ['kg', '회'],
-        today: [] // ex) [[10,3], [10,3], [10,3]]
+        name: '걷기',
+        icons: ['mdi-timer-outline'],
+        labels: ['분'],
+        today: [] // ex) [[30]]
       },
       {
         name: '캐틀벨',
