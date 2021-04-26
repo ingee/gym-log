@@ -21,6 +21,13 @@ export default new Vuex.Store({
         today: [] // ex) [[30]]
       },
       {
+        name: '장군봉산책',
+        icons: ['mdi-counter'],
+        labels: ['시간'],
+        today: [], // ex) [[1], [1], [1]]
+        def: [1] // optional
+      },
+      {
         name: '캐틀벨',
         icons: ['mdi-weight-kilogram', 'mdi-timer-outline'],
         labels: ['kg', '초'],

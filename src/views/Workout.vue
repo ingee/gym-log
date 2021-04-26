@@ -109,8 +109,13 @@ export default {
   methods: {
     mkOneSet () {
       const aSet = []
+      let value
       for (let i = 0; i < this.workout.labels.length; i++) {
-        aSet.push(0)
+        value = 0
+        if (this.workout.def && this.workout.def[i]) {
+          value = this.workout.def[i]
+        }
+        aSet.push(value)
       }
       return aSet
     },
