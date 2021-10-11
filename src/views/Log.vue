@@ -51,9 +51,15 @@
       <v-col cols="6" class="px-1">
         <v-btn
           block
-          class="mb-2"
+          color="primary"
+          @click="onOK"
+        > 수정 </v-btn>
+      </v-col>
+      <v-col cols="6" class="px-1">
+        <v-btn
+          block
           @click="$router.go(-1)"
-        > 돌아가기 </v-btn>
+        > 취소 </v-btn>
       </v-col>
     </v-row>
   </div>
@@ -69,6 +75,11 @@ export default {
   computed: mapState([
     'workoutLogs'
   ]),
+  methods: {
+    onOK () {
+      console.log('dbg@Log.vue onOK()')
+    },
+  },
   created () {
     this.todayLogs = this.workoutLogs.filter(
       log => log.date === this.$route.params.date

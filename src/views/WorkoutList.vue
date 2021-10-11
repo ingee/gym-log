@@ -92,8 +92,8 @@ export default {
   props: ['date'],
   computed: mapState(['workouts']),
   data: () => ({
-    dateStr: '',
     dateKey: '',
+    dateStr: '',
   }),
   methods: {
     removeToday (workoutID) {
@@ -101,7 +101,6 @@ export default {
     }
   },
   created () {
-    console.log('dbg@WorkoutList.created, this.date=', this.date)
     if (this.date) this.dateKey = this.date
     else this.dateKey = this.$dateStr.makeTodayStr()
     this.dateStr = Intl.DateTimeFormat('ko-KR', {
