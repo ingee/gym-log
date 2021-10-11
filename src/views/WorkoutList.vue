@@ -16,7 +16,7 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-col>
-          <span> 운동 리스트 </span>
+          <span> {{ dateStr }} </span>
         </v-col>
       </v-row>
     </v-sheet>
@@ -89,13 +89,24 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState([
-    'workouts'
-  ]),
+  props: ['date'],
+  computed: mapState(['workouts']),
+  data: () => ({
+    dateStr: '',
+    dateKey: '',
+  }),
   methods: {
     removeToday (workoutID) {
       this.$store.dispatch('rmTodayWorkout', workoutID)
     }
-  }
+  },
+  created () {
+    console.log('dbg@WorkoutList.created, this.date=', this.date)
+    if (this.date) this.dateKey = this.date
+    else this.dateKey = this.$dateStr.makeTodayStr()
+    this.dateStr = Intl.DateTimeFormat('ko-KR', {
+      weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'
+    }).format(new Date(this.dateKey))
+  },
 }
 </script>

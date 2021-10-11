@@ -55,8 +55,11 @@ export default {
       this.loadWorkoutLogs(updatedYear)
     },
     onDate (date) {
-      if (date <= this.today && this.workoutDays.includes(date)) {
+      if (date > this.today) return
+      if (this.workoutDays.includes(date)) {
         this.$router.push({ name: 'Log', params: { date } })
+      } else {
+        this.$router.push({ name: 'WorkoutList', params: { date } })
       }
     }
   },
