@@ -9,12 +9,6 @@ export default new Vuex.Store({
     year: null,
     workouts: [
       {
-        name: '턱걸이',
-        icons: ['mdi-counter'],
-        labels: ['회'],
-        today: [] // ex) [[4], [4], [4]]
-      },
-      {
         name: '걷기',
         icons: ['mdi-timer-outline'],
         labels: ['분'],
@@ -25,13 +19,31 @@ export default new Vuex.Store({
         icons: ['mdi-counter'],
         labels: ['시간'],
         today: [], // ex) [[1], [1], [1]]
-        def: [1] // optional
+        def: [1] // default-value, optional
       },
       {
         name: '캐틀벨',
         icons: ['mdi-weight-kilogram', 'mdi-timer-outline'],
         labels: ['kg', '초'],
         today: [] // ex) [[10,3], [10,3], [10,3]]
+      },
+      {
+        name: '코어X',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+        today: [] // ex) [[4], [4], [4]]
+      },
+      {
+        name: '코어M',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+        today: [] // ex) [[4], [4], [4]]
+      },
+      {
+        name: '턱걸이',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+        today: [] // ex) [[4], [4], [4]]
       },
       {
         name: '스쿼트',
