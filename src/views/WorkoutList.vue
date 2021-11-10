@@ -25,7 +25,7 @@
         <v-list-item
           v-for="(w, i) in workouts"
           :key="i"
-          :to="'/workouts/' + i"
+          @click="gotoWorkoutView(i)"
         >
           <!-- workout name -->
           <v-list-item-content>
@@ -59,7 +59,7 @@
             <v-btn
               color="error"
               icon
-              @click.prevent="removeToday(i)"
+              @click.stop="removeToday(i)"
             >
               <v-icon> mdi-close-circle </v-icon>
             </v-btn>
@@ -111,6 +111,12 @@ export default {
       const log = this.todayLogs.find(l => l.workout === workoutName)
       if (log) return log.sets.length
       return 0
+    },
+    gotoWorkoutView (i) {
+      this.$router.push({
+        name: 'Workout',
+        params: { date: this.dateKey, id: i },
+      })
     },
   },
   created () {

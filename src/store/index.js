@@ -74,7 +74,7 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    putTodayWorkoutToLogs (state, { date, workout, labels, sets }) {
+    putTodayWorkout (state, { date, workout, labels, sets }) {
       const todayLog = { date, workout, labels, sets }
       const idx = state.workoutLogs.findIndex(
         log => (log.date === date && log.workout === workout)
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         state.workoutLogs[idx] = todayLog
       }
     },
-    rmTodayWorkoutFromLogs (state, { date, workout }) {
+    rmTodayWorkout (state, { date, workout }) {
       const idx = state.workoutLogs.findIndex(
         log => (log.date === date && log.workout === workout)
       )
@@ -102,7 +102,7 @@ export default new Vuex.Store({
       }
     },
     async putTodayWorkout ({ commit, state }, { date, id, sets }) {
-      commit('putTodayWorkoutToLogs', {
+      commit('putTodayWorkout', {
         date,
         workout: state.workouts[id].name,
         labels: state.workouts[id].labels,
@@ -116,7 +116,7 @@ export default new Vuex.Store({
       })
     },
     async rmTodayWorkout ({ commit, state }, { date, id }) {
-      commit('rmTodayWorkoutFromLogs', {
+      commit('rmTodayWorkout', {
         date,
         workout: state.workouts[id].name
       })

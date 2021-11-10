@@ -149,6 +149,7 @@ export default {
     } else {
       this.sets = [this.mkOneSet()]
     }
+    console.log('dbg@Workout.vue: dateKey=', this.dateKey)
   }
 }
 </script>

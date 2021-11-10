@@ -70,6 +70,7 @@ import { mapState } from 'vuex'
 
 export default {
   data: () => ({
+    today: '',
     todayLogs: []
   }),
   computed: mapState([
@@ -77,13 +78,16 @@ export default {
   ]),
   methods: {
     onOK () {
-      console.log('dbg@Log.vue onOK()')
+      console.log('dbg@Log.vue:onOK() date=', this.today)
+      this.$router.push({ name: 'WorkoutList', params: { date: this.today } })
     },
   },
   created () {
+    this.today = this.$route.params.date
     this.todayLogs = this.workoutLogs.filter(
       log => log.date === this.$route.params.date
     )
+    console.log('dbg@Log.vue:created() date=', this.today)
   }
 }
 </script>
