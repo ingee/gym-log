@@ -12,50 +12,42 @@ export default new Vuex.Store({
         name: '걷기',
         icons: ['mdi-timer-outline'],
         labels: ['분'],
-        today: [] // ex) [[30]]
       },
       {
         name: '장군봉산책',
         icons: ['mdi-counter'],
         labels: ['시간'],
-        today: [], // ex) [[1], [1], [1]]
         def: [1] // default-value, optional
       },
       {
         name: '캐틀벨',
         icons: ['mdi-weight-kilogram', 'mdi-timer-outline'],
         labels: ['kg', '초'],
-        today: [] // ex) [[10,3], [10,3], [10,3]]
       },
       {
         name: '코어X',
         icons: ['mdi-counter'],
         labels: ['회'],
-        today: [] // ex) [[4], [4], [4]]
       },
       {
         name: '코어M',
         icons: ['mdi-counter'],
         labels: ['회'],
-        today: [] // ex) [[4], [4], [4]]
       },
       {
         name: '턱걸이',
         icons: ['mdi-counter'],
         labels: ['회'],
-        today: [] // ex) [[4], [4], [4]]
       },
       {
         name: '스쿼트',
         icons: ['mdi-counter'],
         labels: ['회'],
-        today: [] // ex) [[4], [4], [4]]
       },
       {
         name: '팔굽혀펴기',
         icons: ['mdi-counter'],
         labels: ['회'],
-        today: [] // ex) [[10], [10], [10]]
       },
     ],
     workoutLogs: [
@@ -82,21 +74,10 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    putTodayWorkout (state, { id, sets }) {
-      state.workouts[id].today = sets
-    },
-    rmTodayWorkout (state, id) {
-      state.workouts[id].today = []
-    },
-    putTodayWorkoutToLogs (state, { name, labels, sets }) {
-      const todayLog = {
-        date: this._vm.$dateStr.makeTodayStr(),
-        workout: name,
-        labels: labels,
-        sets: sets
-      }
+    putTodayWorkoutToLogs (state, { date, workout, labels, sets }) {
+      const todayLog = { date, workout, labels, sets }
       const idx = state.workoutLogs.findIndex(
-        log => (log.date === todayLog.date && log.workout === todayLog.workout)
+        log => (log.date === date && log.workout === workout)
       )
       if (idx === -1) {
         state.workoutLogs.push(todayLog)
@@ -104,11 +85,9 @@ export default new Vuex.Store({
         state.workoutLogs[idx] = todayLog
       }
     },
-    rmTodayWorkoutFromLogs (state, id) {
-      const today = this._vm.$dateStr.makeTodayStr()
-      const workout = state.workouts[id].name
+    rmTodayWorkoutFromLogs (state, { date, workout }) {
       const idx = state.workoutLogs.findIndex(
-        log => (log.date === today && log.workout === workout)
+        log => (log.date === date && log.workout === workout)
       )
       if (idx !== -1) {
         state.workoutLogs.splice(idx, 1)
@@ -122,22 +101,28 @@ export default new Vuex.Store({
         state.workoutLogs = await idb.getLogs(year)
       }
     },
-    async putTodayWorkout ({ commit, state }, { id, name, labels, sets }) {
-      commit('putTodayWorkout', { id, name, sets })
-      commit('putTodayWorkoutToLogs', { name, labels, sets })
+    async putTodayWorkout ({ commit, state }, { date, id, sets }) {
+      commit('putTodayWorkoutToLogs', {
+        date,
+        workout: state.workouts[id].name,
+        labels: state.workouts[id].labels,
+        sets
+      })
       await idb.putLog({
-        date: this._vm.$dateStr.makeTodayStr(),
-        workout: name,
-        labels,
+        date,
+        workout: state.workouts[id].name,
+        labels: state.workouts[id].labels,
         sets
       })
     },
-    async rmTodayWorkout ({ commit, state }, workoutID) {
-      commit('rmTodayWorkout', workoutID)
-      commit('rmTodayWorkoutFromLogs', workoutID)
+    async rmTodayWorkout ({ commit, state }, { date, id }) {
+      commit('rmTodayWorkoutFromLogs', {
+        date,
+        workout: state.workouts[id].name
+      })
       await idb.rmLog({
-        date: this._vm.$dateStr.makeTodayStr(),
-        workout: state.workouts[workoutID].name
+        date,
+        workout: state.workouts[id].name
       })
     },
   },

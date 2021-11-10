@@ -32,8 +32,8 @@
             <v-list-item-title>
               <v-badge
                 offset-x="-4"
-                :content="workouts[i].today.length"
-                :value="workouts[i].today.length"
+                :content="getTodaySetsOf(w.name)"
+                :value="getTodaySetsOf(w.name)"
               >
                 {{ w.name }}
               </v-badge>
@@ -90,15 +90,28 @@ import { mapState } from 'vuex'
 
 export default {
   props: ['date'],
-  computed: mapState(['workouts']),
   data: () => ({
     dateKey: '',
     dateStr: '',
   }),
+  computed: {
+    todayLogs () {
+      return this.workoutLogs.filter(l => l.date === this.dateKey)
+    },
+    ...mapState(['workouts', 'workoutLogs']),
+  },
   methods: {
     removeToday (workoutID) {
-      this.$store.dispatch('rmTodayWorkout', workoutID)
-    }
+      this.$store.dispatch('rmTodayWorkout', {
+        date: this.dateKey,
+        id: workoutID
+      })
+    },
+    getTodaySetsOf (workoutName) {
+      const log = this.todayLogs.find(l => l.workout === workoutName)
+      if (log) return log.sets.length
+      return 0
+    },
   },
   created () {
     if (this.date) this.dateKey = this.date

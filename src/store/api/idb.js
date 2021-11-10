@@ -74,7 +74,7 @@ export default {
       openCursorReq.onsuccess = e => {
         const cursor = e.target.result
         if (cursor) {
-          console.log('-     update existing one in DB')
+          console.log('-     update existing one')
           if (cursor.value.workout === workout) {
             const newData = cursor.value
             newData.labels = labels
@@ -84,7 +84,7 @@ export default {
             cursor.continue()
           }
         } else {
-          console.log('-     add new one to DB')
+          console.log('-     add new one')
           const req = store.put({ date, workout, labels, sets })
           req.onerror = e => {
             if (req.error.name === 'QuotaExceededError') {

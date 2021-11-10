@@ -98,14 +98,14 @@
 import { mapState } from 'vuex'
 
 export default {
+  props: ['date'],
   data: () => ({
+    dateKey: '',
     workoutID: null,
     workout: null,
     sets: null,
   }),
-  computed: mapState([
-    'workouts'
-  ]),
+  computed: mapState(['workouts', 'workoutLogs']),
   methods: {
     mkOneSet () {
       const aSet = []
@@ -129,19 +129,23 @@ export default {
     },
     onOK () {
       this.$store.dispatch('putTodayWorkout', {
+        date: this.dateKey,
         id: this.workoutID,
-        name: this.workout.name,
-        labels: this.workout.labels,
         sets: this.sets
       })
       this.$router.go(-1)
     }
   },
   created () {
+    if (this.date) this.dateKey = this.date
+    else this.dateKey = this.$dateStr.makeTodayStr()
     this.workoutID = this.$route.params.id
     this.workout = this.workouts[this.workoutID]
-    if (this.workout.today.length) {
-      this.sets = this.workout.today
+    const todayLog = this.workoutLogs.find(
+      l => l.date === this.dateKey && l.workout === this.workout.name
+    )
+    if (todayLog && todayLog.sets.length) {
+      this.sets = todayLog.sets
     } else {
       this.sets = [this.mkOneSet()]
     }
