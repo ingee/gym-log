@@ -64,16 +64,35 @@ export default {
         resolve()
       }
       tx.onerror = e => {
-        console.log(`@idb: putLog(${date}, ${workout}) ERR: ${e}`)
+        console.log(`@idb: putLog(${date}, ${workout}) ERR=`, e)
         reject(e)
       }
       const store = tx.objectStore(STORE_NAME)
-      const req = store.put({ date, workout, labels, sets })
-      req.onerror = e => {
-        if (req.error.name === 'QuotaExceededError') {
-          // Let's implement this latter
-          //  - https://www.w3.org/TR/WebIDL-1/#quotaexceedederror
-          //  - 2021-01-09 InGee
+      const index = store.index('date')
+      const dateBound = IDBKeyRange.only(date)
+      const openCursorReq = index.openCursor(dateBound)
+      openCursorReq.onsuccess = e => {
+        const cursor = e.target.result
+        if (cursor) {
+          console.log('-     update existing one in DB')
+          if (cursor.value.workout === workout) {
+            const newData = cursor.value
+            newData.labels = labels
+            newData.sets = sets
+            cursor.update(newData)
+          } else {
+            cursor.continue()
+          }
+        } else {
+          console.log('-     add new one to DB')
+          const req = store.put({ date, workout, labels, sets })
+          req.onerror = e => {
+            if (req.error.name === 'QuotaExceededError') {
+              // Let's implement this latter
+              //  - https://www.w3.org/TR/WebIDL-1/#quotaexceedederror
+              //  - 2021-01-09 InGee
+            }
+          }
         }
       }
     })
