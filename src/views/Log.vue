@@ -16,7 +16,7 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-col>
-          <span> {{ $route.params.date }} 기록 </span>
+          <span> {{ todayStr }} </span>
         </v-col>
       </v-row>
     </v-sheet>
@@ -71,6 +71,7 @@ import { mapState } from 'vuex'
 export default {
   data: () => ({
     today: '',
+    todayStr: '',
     todayLogs: []
   }),
   computed: mapState([
@@ -78,15 +79,17 @@ export default {
   ]),
   methods: {
     onOK () {
-      console.log('dbg@Log.vue:onOK() date=', this.today)
       this.$router.push({ name: 'WorkoutList', params: { date: this.today } })
     },
   },
   created () {
-    this.today = this.$route.params.date
     this.todayLogs = this.workoutLogs.filter(
       log => log.date === this.$route.params.date
     )
+    this.today = this.$route.params.date
+    this.todayStr = Intl.DateTimeFormat('ko-KR', {
+      weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'
+    }).format(new Date(this.today))
     console.log('dbg@Log.vue:created() date=', this.today)
   }
 }
