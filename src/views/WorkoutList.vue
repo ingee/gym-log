@@ -74,11 +74,11 @@
         fab
         absolute
         bottom
-        disabled
         right
+        to="/"
       >
         <v-icon>
-          mdi-plus
+          mdi-home
         </v-icon>
       </v-btn>
     </v-fab-transition>
