@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    year: null,
+    year: null, // 'yyyy'
+    date: null, // 'yyyy-mm-dd'
     workouts: [
       {
         name: '걷기',
@@ -92,7 +93,10 @@ export default new Vuex.Store({
       if (idx !== -1) {
         state.workoutLogs.splice(idx, 1)
       }
-    }
+    },
+    setDate (state, date) {
+      state.date = date
+    },
   },
   actions: {
     async getWorkoutLogs ({ context, state }, year) {

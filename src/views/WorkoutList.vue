@@ -89,7 +89,6 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: ['date'],
   data: () => ({
     dateKey: '',
     dateStr: '',
@@ -98,7 +97,7 @@ export default {
     todayLogs () {
       return this.workoutLogs.filter(l => l.date === this.dateKey)
     },
-    ...mapState(['workouts', 'workoutLogs']),
+    ...mapState(['date', 'workouts', 'workoutLogs']),
   },
   methods: {
     removeToday (workoutID) {
@@ -115,7 +114,7 @@ export default {
     gotoWorkoutView (i) {
       this.$router.push({
         name: 'Workout',
-        params: { date: this.dateKey, id: i },
+        params: { id: i },
       })
     },
   },

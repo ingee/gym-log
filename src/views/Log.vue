@@ -70,27 +70,26 @@ import { mapState } from 'vuex'
 
 export default {
   data: () => ({
-    today: '',
     todayStr: '',
     todayLogs: []
   }),
   computed: mapState([
+    'date',
     'workoutLogs'
   ]),
   methods: {
     onOK () {
-      this.$router.push({ name: 'WorkoutList', params: { date: this.today } })
+      this.$router.replace({ name: 'WorkoutList' })
     },
   },
   created () {
     this.todayLogs = this.workoutLogs.filter(
-      log => log.date === this.$route.params.date
+      log => log.date === this.date
     )
-    this.today = this.$route.params.date
     this.todayStr = Intl.DateTimeFormat('ko-KR', {
       weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'
-    }).format(new Date(this.today))
-    console.log('dbg@Log.vue:created() date=', this.today)
+    }).format(new Date(this.date))
+    console.log('dbg@Log.vue:created() date=', this.date)
   }
 }
 </script>

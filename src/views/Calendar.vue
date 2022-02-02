@@ -18,7 +18,7 @@
         absolute
         bottom
         right
-        to="/workouts"
+        @click="onPlus"
       >
         <v-icon>
           mdi-plus
@@ -40,7 +40,7 @@ export default {
     }
   },
   computed: mapState([
-    'workoutLogs'
+    'workoutLogs',
   ]),
   methods: {
     async loadWorkoutLogs (year) {
@@ -54,17 +54,25 @@ export default {
       const updatedYear = updatedDate.substr(0, 4)
       this.loadWorkoutLogs(updatedYear)
     },
+    onPlus () {
+      this.$store.commit('setDate', this.today)
+      this.$router.push({ name: 'WorkoutList' })
+    },
     onDate (date) {
+      console.log('dbg@Calendar.vue date=', date)
       if (date > this.today) return
+      this.$store.commit('setDate', date)
       if (this.workoutDays.includes(date)) {
         this.$router.push({ name: 'Log', params: { date } })
       } else {
-        this.$router.push({ name: 'WorkoutList', params: { date } })
+        this.$router.push({ name: 'WorkoutList' })
       }
-    }
+    },
   },
-  async created () {
+  created () {
+    if (this.$store.state.date) this.selectedDate = this.$store.state.date
     this.loadWorkoutLogs((new Date()).getFullYear())
+    console.log('dbg@Calendar.vue this.selectedDate=', this.selectedDate)
   }
 }
 </script>

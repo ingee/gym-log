@@ -98,14 +98,13 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: ['date'],
   data: () => ({
     dateKey: '',
     workoutID: null,
     workout: null,
     sets: null,
   }),
-  computed: mapState(['workouts', 'workoutLogs']),
+  computed: mapState(['date', 'workouts', 'workoutLogs']),
   methods: {
     mkOneSet () {
       const aSet = []

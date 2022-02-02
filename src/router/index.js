@@ -18,7 +18,7 @@ const routes = [
     component: Calendar
   },
   {
-    path: '/logs/:date',
+    path: '/log',
     name: 'Log',
     component: Log
   },
@@ -26,13 +26,11 @@ const routes = [
     path: '/workouts',
     name: 'WorkoutList',
     component: WorkoutList,
-    props: true,
   },
   {
     path: '/workouts/:id',
     name: 'Workout',
     component: Workout,
-    props: true,
   },
   {
     path: '/about',
