@@ -13,12 +13,12 @@ export default new Vuex.Store({
         name: '걷기',
         icons: ['mdi-timer-outline'],
         labels: ['분'],
+        // def: [1] // default-value, optional
       },
       {
-        name: '장군봉산책',
+        name: '체조',
         icons: ['mdi-counter'],
-        labels: ['시간'],
-        def: [1] // default-value, optional
+        labels: ['회'],
       },
       {
         name: '캐틀벨',
