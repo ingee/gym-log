@@ -50,6 +50,11 @@ export default new Vuex.Store({
         icons: ['mdi-counter'],
         labels: ['회'],
       },
+      {
+        name: '고무줄',
+        icons: ['mdi-star', 'mdi-counter'],
+        labels: ['별', '회'],
+      },
     ],
     workoutLogs: [
       // Workout Log Sample
