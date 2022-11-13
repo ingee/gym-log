@@ -99,12 +99,17 @@ export default new Vuex.Store({
         state.workoutLogs.splice(idx, 1)
       }
     },
-    setDate (state, date) {
-      state.date = date
-    },
   },
   actions: {
-    async getWorkoutLogs ({ context, state }, year) {
+    async setDate ({ dispatch, state }, date) {
+      console.log(`dbg@store setDate (${date})`)
+      if (String(state.date) !== String(date)) {
+        state.date = date
+      }
+      dispatch('getWorkoutLogs', date.slice(0, 4))
+    },
+    async getWorkoutLogs ({ state }, year) {
+      console.log(`dbg@store getWorkoutLogs (${year})`)
       if (String(state.year) !== String(year)) {
         state.year = year
         state.workoutLogs = await idb.getLogs(year)

@@ -44,24 +44,28 @@ export default {
   ]),
   methods: {
     async loadWorkoutLogs (year) {
+      console.log(`dbg@Calendar.vue loadWorkoutLogs (${year})`)
       await this.$store.dispatch('getWorkoutLogs', year)
       this.workoutDays = this.workoutLogs.map(logs => logs.date)
     },
     onClickYear (year) {
+      console.log(`dbg@Calendar.vue onClickYear (${year})`)
       this.loadWorkoutLogs(year)
     },
     onUpdate (updatedDate) {
+      console.log(`dbg@Calendar.vue onUpdate (${updatedDate})`)
       const updatedYear = updatedDate.substr(0, 4)
       this.loadWorkoutLogs(updatedYear)
     },
     onPlus () {
-      this.$store.commit('setDate', this.today)
+      console.log('dbg@Calendar.vue onPlus ()')
+      this.$store.dispatch('setDate', this.today)
       this.$router.push({ name: 'WorkoutList' })
     },
     onDate (date) {
       console.log('dbg@Calendar.vue date=', date)
       if (date > this.today) return
-      this.$store.commit('setDate', date)
+      this.$store.dispatch('setDate', date)
       if (this.workoutDays.includes(date)) {
         this.$router.push({ name: 'Log', params: { date } })
       } else {
@@ -70,9 +74,8 @@ export default {
     },
   },
   created () {
+    console.log('dbg@Calendar.vue created ()')
     if (this.$store.state.date) this.selectedDate = this.$store.state.date
-    this.loadWorkoutLogs((new Date()).getFullYear())
-    console.log('dbg@Calendar.vue this.selectedDate=', this.selectedDate)
   }
 }
 </script>
