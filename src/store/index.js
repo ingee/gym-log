@@ -15,12 +15,6 @@ export default new Vuex.Store({
         labels: ['분'],
       },
       {
-        name: '체조',
-        icons: ['mdi-counter'],
-        labels: ['회'],
-        def: [1] // default-value, optional
-      },
-      {
         name: '캐틀벨',
         icons: ['mdi-weight-kilogram', 'mdi-timer-outline'],
         labels: ['kg', '초'],
@@ -41,19 +35,19 @@ export default new Vuex.Store({
         labels: ['회'],
       },
       {
+        name: '턱걸이 루틴',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+      },
+      {
         name: '스쿼트',
         icons: ['mdi-counter'],
         labels: ['회'],
       },
       {
-        name: '팔굽혀펴기',
-        icons: ['mdi-counter'],
-        labels: ['회'],
-      },
-      {
-        name: '고무줄',
-        icons: ['mdi-star', 'mdi-counter'],
-        labels: ['별', '회'],
+        name: '버피',
+        icons: ['mdi-timer-outline'],
+        labels: ['분'],
       },
     ],
     workoutLogs: [
