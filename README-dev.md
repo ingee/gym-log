@@ -4,6 +4,7 @@ Daily workout log
 
 ## What I use for scafolding
 * @vue/cli 4.5.7
+* node.js v16.20.0
 
 ## What I did for scafolding
 ```

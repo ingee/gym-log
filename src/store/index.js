@@ -20,22 +20,17 @@ export default new Vuex.Store({
         labels: ['kg', '초'],
       },
       {
-        name: '코어X',
-        icons: ['mdi-counter'],
-        labels: ['회'],
-      },
-      {
-        name: '코어M',
-        icons: ['mdi-counter'],
-        labels: ['회'],
-      },
-      {
         name: '턱걸이',
         icons: ['mdi-counter'],
         labels: ['회'],
       },
       {
         name: '턱걸이 루틴',
+        icons: ['mdi-counter'],
+        labels: ['회'],
+      },
+      {
+        name: '팔굽혀펴기',
         icons: ['mdi-counter'],
         labels: ['회'],
       },

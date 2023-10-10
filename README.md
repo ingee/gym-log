@@ -11,6 +11,7 @@ You can use this web-app at [GitHub Page](https://ingee.github.io/gym-log/).
 
 ## Project setup
 ```
+node -v ### v16.20.0
 npm install
 ```
 
