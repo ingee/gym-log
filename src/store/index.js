@@ -10,7 +10,7 @@ export default new Vuex.Store({
     date: null, // 'yyyy-mm-dd'
     workouts: [
       {
-        name: '걷기',
+        name: '유산소',
         icons: ['mdi-timer-outline'],
         labels: ['분'],
       },
