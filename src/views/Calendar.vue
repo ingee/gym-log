@@ -18,6 +18,7 @@
         absolute
         bottom
         right
+        style="bottom: 20px;"
         @click="onPlus"
       >
         <v-icon>
