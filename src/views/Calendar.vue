@@ -16,9 +16,8 @@
         class="mb-10"
         fab
         absolute
-        bottom
         right
-        style="bottom: 70px;"
+        style="bottom: 70px"
         @click="onPlus"
       >
         <v-icon>
