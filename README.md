@@ -9,10 +9,10 @@ You can use this web-app at [GitHub Page](https://ingee.github.io/gym-log/).
 
 ---
 
-## Project setup
+## Use Node.js lts/iron
 ```
-node -v ### v16.20.0
-npm install
+node -v ### v20.19.2
+npm ci
 ```
 
 ### Compiles and hot-reloads for development
@@ -28,6 +28,12 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+## Project setup
+```
+node -v ### v16.20.0
+npm install
 ```
 
 ### Customize configuration

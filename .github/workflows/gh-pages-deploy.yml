@@ -11,7 +11,9 @@ jobs:
       - name: Setup Node.js for use with actions
         uses: actions/setup-node@v2
         with:
-          version:  12.x
+          node-version: '20.19.2'
+      - name: Set env var
+        run: echo "NODE_OPTONS=--openssl-legacy-provider" >> $GITHUB_ENV
       - name: Checkout branch
         uses: actions/checkout@v2
       - name: Clean install dependencies
